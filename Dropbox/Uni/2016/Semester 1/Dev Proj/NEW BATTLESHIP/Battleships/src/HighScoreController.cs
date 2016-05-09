@@ -110,7 +110,9 @@ static class HighScoreController
 		output.WriteLine(_Scores.Count);
 
 		foreach (Score s in _Scores) {
-			output.WriteLine(s.Name + s.Value);
+			
+				output.WriteLine(s.Name + s.Value); //removed the if statement to verify the output
+				
 		}
 
 		output.Close();
