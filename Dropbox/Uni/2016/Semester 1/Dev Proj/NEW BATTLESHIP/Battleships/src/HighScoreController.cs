@@ -209,6 +209,7 @@ static class HighScoreController
 		}
 	}
 }
+//add a file dumo location for the highscores.txt
 
 //=======================================================
 //Service provided by Telerik (www.telerik.com)
