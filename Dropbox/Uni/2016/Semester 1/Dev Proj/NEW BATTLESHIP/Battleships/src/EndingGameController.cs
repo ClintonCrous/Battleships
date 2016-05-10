@@ -3,17 +3,9 @@ using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Data;
 using System.Diagnostics;
 using SwinGameSDK;
-
-using static GameController;
-using static UtilityFunctions;
-using static GameResources;
-using static DeploymentController;
-using static DiscoveryController;
-using static MenuController;
-using static HighScoreController;
-
 
 /// <summary>
 /// The EndingGameController is responsible for managing the interactions at the end
@@ -42,21 +34,12 @@ static class EndingGameController
 	/// Handle the input during the end of the game. Any interaction
 	/// will result in it reading in the highsSwinGame.
 	/// </summary>
-	public static void HandleEndOfGameInput ()
+	public static void HandleEndOfGameInput()
 	{
-		if (SwinGame.MouseClicked (MouseButton.LeftButton) || SwinGame.KeyTyped (KeyCode.vk_RETURN) || SwinGame.KeyTyped (KeyCode.vk_ESCAPE))
-		{
-			//HighScoreController.ReadHighScore (AddNewState(GameState.ViewingHighScores));
-			GameController.EndCurrentState ();
+		if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.vk_RETURN) || SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
+			HighScoreController.ReadHighScore(GameController.HumanPlayer.Score);
+			GameController.EndCurrentState();
 		}
 	}
+
 }
-
-
-
-//=======================================================
-//Service provided by Telerik (www.telerik.com)
-//Conversion powered by NRefactory.
-//Twitter: @telerik
-//Facebook: facebook.com/telerik
-//=======================================================

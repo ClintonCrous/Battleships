@@ -3,26 +3,15 @@ using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+//using System.Data;
 using System.Diagnostics;
 using SwinGameSDK;
-
-
-using static UtilityFunctions;
-using static GameResources;
-using static DeploymentController;
-using static DiscoveryController;
-using static EndingGameController;
-using static MenuController;
-using static HighScoreController;
-
 
 /// <summary>
 /// The GameController is responsible for controlling the game,
 /// managing user input, and displaying the current state of the
 /// game.
 /// </summary>
-
 public static class GameController
 {
 
@@ -286,25 +275,25 @@ public static class GameController
 
 		switch (CurrentState) {
 			case GameState.ViewingMainMenu:
-			MenuController.HandleMainMenuInput();
+				MenuController.HandleMainMenuInput();
 				break;
 			case GameState.ViewingGameMenu:
-			MenuController.HandleGameMenuInput();
+				MenuController.HandleGameMenuInput();
 				break;
 			case GameState.AlteringSettings:
-			MenuController.HandleSetupMenuInput();
+				MenuController.HandleSetupMenuInput();
 				break;
 			case GameState.Deploying:
-			DeploymentController.HandleDeploymentInput();
+				DeploymentController.HandleDeploymentInput();
 				break;
 			case GameState.Discovering:
-			DiscoveryController.HandleDiscoveryInput();
+				DiscoveryController.HandleDiscoveryInput();
 				break;
 			case GameState.EndingGame:
-			EndingGameController.HandleEndOfGameInput();
+				EndingGameController.HandleEndOfGameInput();
 				break;
 			case GameState.ViewingHighScores:
-			HighScoreController.HandleHighScoreInput();
+				HighScoreController.HandleHighScoreInput();
 				break;
 		}
 
@@ -323,25 +312,25 @@ public static class GameController
 
 		switch (CurrentState) {
 			case GameState.ViewingMainMenu:
-			MenuController.DrawMainMenu();
+				MenuController.DrawMainMenu();
 				break;
 			case GameState.ViewingGameMenu:
-			MenuController.DrawGameMenu();
+				MenuController.DrawGameMenu();
 				break;
 			case GameState.AlteringSettings:
-			MenuController.DrawSettings();
+				MenuController.DrawSettings();
 				break;
 			case GameState.Deploying:
-			DeploymentController.DrawDeployment();
+				DeploymentController.DrawDeployment();
 				break;
 			case GameState.Discovering:
-			DiscoveryController.DrawDiscovery();
+				DiscoveryController.DrawDiscovery();
 				break;
 			case GameState.EndingGame:
-			EndingGameController.DrawEndOfGame();
+				EndingGameController.DrawEndOfGame();
 				break;
 			case GameState.ViewingHighScores:
-			HighScoreController.DrawHighScores();
+				HighScoreController.DrawHighScores();
 				break;
 		}
 
@@ -389,10 +378,3 @@ public static class GameController
 	}
 
 }
-
-//=======================================================
-//Service provided by Telerik (www.telerik.com)
-//Conversion powered by NRefactory.
-//Twitter: @telerik
-//Facebook: facebook.com/telerik
-//=======================================================

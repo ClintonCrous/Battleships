@@ -3,13 +3,10 @@ using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+//using System.Data;
 using System.Diagnostics;
 using System.IO;
 using SwinGameSDK;
-
-
-
 
 /// <summary>
 /// Controls displaying and collecting high score data.
@@ -110,9 +107,7 @@ static class HighScoreController
 		output.WriteLine(_Scores.Count);
 
 		foreach (Score s in _Scores) {
-			
-				output.WriteLine(s.Name + s.Value); //removed the if statement to verify the output
-				
+			output.WriteLine(s.Name + s.Value);
 		}
 
 		output.Close();
@@ -209,11 +204,3 @@ static class HighScoreController
 		}
 	}
 }
-//add a file dumo location for the highscores.txt
-
-//=======================================================
-//Service provided by Telerik (www.telerik.com)
-//Conversion powered by NRefactory.
-//Twitter: @telerik
-//Facebook: facebook.com/telerik
-//=======================================================

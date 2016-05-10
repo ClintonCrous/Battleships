@@ -1,18 +1,14 @@
-
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using SwinGameSDK;
+//using System.Data;
 using System.Diagnostics;
-
-
-
+using SwinGameSDK;
 /// <summary>
 /// This includes a number of utility methods for
 /// drawing and interacting with the Mouse.
 /// </summary>
-
 static class UtilityFunctions
 {
 	public const int FIELD_TOP = 122;
@@ -138,9 +134,9 @@ static class UtilityFunctions
 				draw = true;
 
 				switch (grid[row, col]) {
-				case TileView.Ship:
-						draw = false;
-						break;
+					//case TileView.Ship:
+					//	draw = false;
+					//	break;
 					//If small Then fillColor = _SMALL_SHIP Else fillColor = _LARGE_SHIP
 					case TileView.Miss:
 						if (small)
@@ -155,7 +151,7 @@ static class UtilityFunctions
 							fillColor = LARGE_HIT;
 						break;
 					case TileView.Sea:
-
+					case TileView.Ship:
 						if (small)
 							fillColor = SMALL_SEA;
 						else
@@ -238,14 +234,14 @@ static class UtilityFunctions
 			case GameState.ViewingGameMenu:
 			case GameState.AlteringSettings:
 			case GameState.ViewingHighScores:
-			SwinGame.DrawBitmap(GameResources.GameImage("Menu"), 0, 0);
+				SwinGame.DrawBitmap(GameResources.GameImage("Menu"), 0, 0);
 				break;
 			case GameState.Discovering:
 			case GameState.EndingGame:
-			SwinGame.DrawBitmap(GameResources.GameImage("Discovery"), 0, 0);
+				SwinGame.DrawBitmap(GameResources.GameImage("Discovery"), 0, 0);
 				break;
 			case GameState.Deploying:
-			SwinGame.DrawBitmap(GameResources.GameImage("Deploy"), 0, 0);
+				SwinGame.DrawBitmap(GameResources.GameImage("Deploy"), 0, 0);
 				break;
 			default:
 				SwinGame.ClearScreen();
@@ -257,7 +253,7 @@ static class UtilityFunctions
 
 	public static void AddExplosion(int row, int col)
 	{
-		AddAnimation(row, col, "Explosion");
+		AddAnimation(row, col, "Splash");
 	}
 
 	public static void AddSplash(int row, int col)
@@ -291,8 +287,7 @@ static class UtilityFunctions
 		List<Sprite> ended = new List<Sprite>();
 		foreach (Sprite s in _Animations) {
 			SwinGame.UpdateSprite(s);
-			if (s.AnimationHasEnded
-				) {
+			if (s.AnimationHasEnded) {
 				ended.Add(s);
 			}
 		}
@@ -319,10 +314,3 @@ static class UtilityFunctions
 		}
 	}
 }
-
-//=======================================================
-//Service provided by Telerik (www.telerik.com)
-//Conversion powered by NRefactory.
-//Twitter: @telerik
-//Facebook: facebook.com/telerik
-//=======================================================

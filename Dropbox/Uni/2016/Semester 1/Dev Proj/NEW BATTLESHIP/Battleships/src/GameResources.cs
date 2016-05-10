@@ -3,14 +3,12 @@ using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+//using System.Data;
 using System.Diagnostics;
 using SwinGameSDK;
 
-
 public static class GameResources
 {
-
 
 	private static void LoadFonts()
 	{
@@ -269,31 +267,28 @@ public static class GameResources
 
 	private static void FreeFonts()
 	{
-		
-		foreach ( Font obj in _Fonts.Values) {
+		foreach (Font obj in _Fonts.Values) {
 			SwinGame.FreeFont(obj);
 		}
 	}
 
 	private static void FreeImages()
 	{
-		
 		foreach (Bitmap obj in _Images.Values) {
 			SwinGame.FreeBitmap(obj);
 		}
 	}
 
 	private static void FreeSounds()
-	{
-		
-		foreach ( SoundEffect obj in _Sounds.Values) {
+	{		
+		foreach (SoundEffect obj in _Sounds.Values) {
 			Audio.FreeSoundEffect(obj);
 		}
 	}
 
 	private static void FreeMusic()
 	{
-		
+
 		foreach (Music obj in _Music.Values) {
 			Audio.FreeMusic(obj);
 		}
@@ -308,10 +303,3 @@ public static class GameResources
 		SwinGame.ProcessEvents();
 	}
 }
-
-//=======================================================
-//Service provided by Telerik (www.telerik.com)
-//Conversion powered by NRefactory.
-//Twitter: @telerik
-//Facebook: facebook.com/telerik
-//=======================================================
