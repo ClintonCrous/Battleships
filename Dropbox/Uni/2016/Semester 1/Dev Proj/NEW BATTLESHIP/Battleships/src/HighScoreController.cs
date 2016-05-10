@@ -1,9 +1,7 @@
-
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using System.Data;
 using System.Diagnostics;
 using System.IO;
 using SwinGameSDK;
@@ -16,7 +14,7 @@ using SwinGameSDK;
 /// </remarks>
 static class HighScoreController
 {
-	private const int NAME_WIDTH = 3;
+	private const int NAME_WIDTH = 10;
 
 	private const int SCORES_LEFT = 490;
 	/// <summary>
@@ -62,7 +60,7 @@ static class HighScoreController
 		string filename = null;
 		filename = SwinGame.PathToResource("highscores.txt");
 
-		StreamReader input = default(StreamReader);
+		StreamReader input = null;
 		input = new StreamReader(filename);
 
 		//Read in the # of scores
@@ -101,7 +99,7 @@ static class HighScoreController
 		string filename = null;
 		filename = SwinGame.PathToResource("highscores.txt");
 
-		StreamWriter output = default(StreamWriter);
+		StreamWriter output = null;
 		output = new StreamWriter(filename);
 
 		output.WriteLine(_Scores.Count);
@@ -192,8 +190,8 @@ static class HighScoreController
 
 			s.Name = SwinGame.TextReadAsASCII();
 
-			if (s.Name.Length < 3) {
-				s.Name = s.Name + new string(Convert.ToChar(" "), 3 - s.Name.Length);
+			if (s.Name.Length < 10) {
+				s.Name = s.Name + new string(Convert.ToChar(" "), 10 - s.Name.Length);
 			}
 
 			_Scores.RemoveAt(_Scores.Count - 1);
