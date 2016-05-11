@@ -6,7 +6,12 @@ using System.Diagnostics;
 using System.IO;
 using SwinGameSDK;
 
-
+/// <summary>
+/// Controls displaying and collecting high score data.
+/// </summary>
+/// <remarks>
+/// Data is saved to a file.
+/// </remarks>
 static class HighScoreController
 {
 	private const int NAME_WIDTH = 10;
