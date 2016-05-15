@@ -67,7 +67,7 @@ static class DiscoveryController
 
 		mouse = SwinGame.MousePosition();
 
-		//Calculate the row/col clicked
+		//Calculate the row/col clicked for the mouse
 		int row = 0;
 		int col = 0;
 		row = Convert.ToInt32(Math.Floor((mouse.Y - UtilityFunctions.FIELD_TOP) / (UtilityFunctions.CELL_HEIGHT + UtilityFunctions.CELL_GAP)));
