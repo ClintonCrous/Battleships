@@ -3,9 +3,9 @@ using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using System.Data;
 using System.Diagnostics;
 using SwinGameSDK;
+
 
 /// <summary>
 /// The GameController is responsible for controlling the game,
@@ -76,6 +76,9 @@ public static class GameController
 
 		//create the players
 		switch (_aiSetting) {
+		case AIOption.Easy:
+				_ai = new AIEasyPlayer (_theGame);
+				break;
 			case AIOption.Medium:
 				_ai = new AIMediumPlayer(_theGame);
 				break;
@@ -118,7 +121,13 @@ public static class GameController
 		DrawScreen();
 		SwinGame.RefreshScreen();
 	}
-
+	
+	/// <summary>
+	/// Determines where an explosion occurs using row and column numbers
+	/// </summary>
+	/// <param name="row">the number of the row of the grid</param>
+	/// <param name="columns">the number of the columns of the grid</param>
+	/// <param name="showAnimation">determines whether an animation is played</param>
 	private static void PlayHitSequence(int row, int column, bool showAnimation)
 	{
 		if (showAnimation) {
@@ -130,6 +139,12 @@ public static class GameController
 		UtilityFunctions.DrawAnimationSequence();
 	}
 
+	/// <summary>
+	/// Determines where a splash occurs using row and column numbers
+	/// </summary>
+	/// <param name="row">the number of the row of the grid</param>
+	/// <param name="columns">the number of the columns of the grid</param>
+	/// <param name="showAnimation">determines whether an animation is played</param>
 	private static void PlayMissSequence(int row, int column, bool showAnimation)
 	{
 		if (showAnimation) {
