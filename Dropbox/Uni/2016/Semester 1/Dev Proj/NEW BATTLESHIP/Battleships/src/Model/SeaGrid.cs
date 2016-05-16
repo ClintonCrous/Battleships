@@ -3,7 +3,6 @@ using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using System.Data;
 using System.Diagnostics;
 /// <summary>
 /// The SeaGrid is the grid upon which the ships are deployed.
@@ -19,8 +18,8 @@ public class SeaGrid : ISeaGrid
 	private const int _WIDTH = 10;
 
 	private const int _HEIGHT = 10;
-	private Tile[,] _GameTiles;
 	private Dictionary<ShipName, Ship> _Ships;
+	private Tile[,] _GameTiles;
 
 	private int _ShipsKilled = 0;
 	/// <summary>
@@ -59,8 +58,7 @@ public class SeaGrid : ISeaGrid
 	/// <param name="x">x coordinate of the tile</param>
 	/// <param name="y">y coordiante of the tile</param>
 	/// <returns></returns>
-	public TileView this[int x, int y]
-	{
+	public TileView this[int x, int y] {
 		get { return _GameTiles[x, y].View; }
 	}
 
@@ -172,7 +170,7 @@ public class SeaGrid : ISeaGrid
 		try {
 			//tile is already hit
 			if (_GameTiles[row, col].Shot) {
-				return new AttackResult(ResultOfAttack.ShotAlready, "have already attacked [" + col + "," + row + "]!", row, col);
+				return new AttackResult(ResultOfAttack.ShotAlready, "have already attacked that coordinate!", row, col);
 			}
 
 			_GameTiles[row, col].Shoot();
@@ -198,10 +196,3 @@ public class SeaGrid : ISeaGrid
 		}
 	}
 }
-
-//=======================================================
-//Service provided by Telerik (www.telerik.com)
-//Conversion powered by NRefactory.
-//Twitter: @telerik
-//Facebook: facebook.com/telerik
-//=======================================================

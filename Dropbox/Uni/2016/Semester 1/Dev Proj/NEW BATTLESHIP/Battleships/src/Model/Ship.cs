@@ -1,4 +1,3 @@
-
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
@@ -65,10 +64,18 @@ public class Ship
 		get { return _row; }
 	}
 
+	/// <summary>
+	/// The column location of the ship
+	/// </summary>
+	/// <returns>the column of the ship</returns>
 	public int Column {
 		get { return _col; }
 	}
 
+	/// <summary>
+	/// The direction of the ship
+	/// </summary>
+	/// <returns>the direction of the ship</returns>
 	public Direction Direction {
 		get { return _direction; }
 	}
@@ -79,7 +86,7 @@ public class Ship
 		_tiles = new List<Tile>();
 
 		//gets the ship size from the enumarator
-		_sizeOfShip = (int) _shipName;
+		_sizeOfShip = (int)_shipName;
 	}
 
 	/// <summary>
@@ -102,6 +109,9 @@ public class Ship
 		_tiles.Clear();
 	}
 
+	/// <summary>
+	/// Counts the hit taken to a ship
+	/// </summary>
 	public void Hit()
 	{
 		_hitsTaken = _hitsTaken + 1;
@@ -115,6 +125,9 @@ public class Ship
 		get { return _tiles.Count > 0; }
 	}
 
+	/// <summary>
+	/// IsDestroyed returns if the ships has been Destroyed.
+	/// </summary>
 	public bool IsDestroyed {
 		get { return Hits == Size; }
 	}
@@ -132,10 +145,3 @@ public class Ship
 		_direction = direction;
 	}
 }
-
-//=======================================================
-//Service provided by Telerik (www.telerik.com)
-//Conversion powered by NRefactory.
-//Twitter: @telerik
-//Facebook: facebook.com/telerik
-//=======================================================
