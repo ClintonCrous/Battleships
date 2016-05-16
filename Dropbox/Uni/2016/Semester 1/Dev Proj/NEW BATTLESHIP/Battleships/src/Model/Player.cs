@@ -1,9 +1,7 @@
-
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using System.Data;
 using System.Diagnostics;
 /// <summary>
 /// Player has its own _PlayerGrid, and can see an _EnemyGrid, it can also check if
@@ -43,7 +41,7 @@ public class Player : IEnumerable<Ship>
 	public Player(BattleShipsGame controller)
 	{
 		_game = controller;
-		_playerGrid = new SeaGrid(_Ships);
+		_playerGrid = new SeaGrid (_Ships);
 
 		//for each ship add the ships name so the seagrid knows about them
 		foreach (ShipName name in Enum.GetValues(typeof(ShipName))) {
@@ -78,7 +76,7 @@ public class Player : IEnumerable<Ship>
 	}
 
 	public bool IsDestroyed {
-//Check if all ships are destroyed... -1 for the none ship
+		//Check if all ships are destroyed... -1 for the none ship
 		get { return _playerGrid.ShipsKilled == Enum.GetValues(typeof(ShipName)).Length - 1; }
 	}
 
@@ -90,13 +88,11 @@ public class Player : IEnumerable<Ship>
 	/// <returns>The ship with the indicated name</returns>
 	/// <remarks>The none ship returns nothing/null</remarks>
 	public Ship Ship(ShipName name) {
+			if (name == ShipName.None)
+				return null;
 
-		if (name == ShipName.None)
-			return null;
-
-		return _Ships[name];
-
-	}
+			return _Ships[name];
+		}
 
 	/// <summary>
 	/// The number of shots the player has made
@@ -120,6 +116,9 @@ public class Player : IEnumerable<Ship>
 		get { return _misses; }
 	}
 
+	/// <summary>
+	/// Calculates the users score 
+	/// </summary>
 	public int Score {
 		get {
 			if (IsDestroyed) {
@@ -181,23 +180,31 @@ public class Player : IEnumerable<Ship>
 	/// <returns>the result of the attack</returns>
 	internal AttackResult Shoot(int row, int col)
 	{
-		_shots += 1;
 		AttackResult result = default(AttackResult);
 		result = EnemyGrid.HitTile(row, col);
 
 		switch (result.Value) {
-			case ResultOfAttack.Destroyed:
-			case ResultOfAttack.Hit:
-				_hits += 1;
-				break;
-			case ResultOfAttack.Miss:
-				_misses += 1;
-				break;
+		case ResultOfAttack.ShotAlready:
+			break;
+		case ResultOfAttack.Destroyed:
+			_shots += 1;
+			break;
+		case ResultOfAttack.Hit:
+			_hits += 1;
+			_shots += 1;
+			break;
+		case ResultOfAttack.Miss:
+			_misses += 1;
+			_shots += 1;
+			break;
 		}
 
 		return result;
 	}
 
+	/// <summary>
+	/// Controls the randomized ship deployment option
+	/// </summary>
 	public virtual void RandomizeDeployment()
 	{
 		bool placementSuccessful = false;
@@ -235,10 +242,3 @@ public class Player : IEnumerable<Ship>
 		}
 	}
 }
-
-//=======================================================
-//Service provided by Telerik (www.telerik.com)
-//Conversion powered by NRefactory.
-//Twitter: @telerik
-//Facebook: facebook.com/telerik
-//=======================================================
