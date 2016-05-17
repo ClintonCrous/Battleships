@@ -1,7 +1,9 @@
+
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Data;
 using System.Diagnostics;
 using SwinGameSDK;
 
@@ -13,7 +15,7 @@ public static class GameResources
 		NewFont("ArialLarge", "arial.ttf", 80);
 		NewFont("Courier", "cour.ttf", 14);
 		NewFont("CourierSmall", "cour.ttf", 8);
-		NewFont("Menu", "ffaccess.ttf", 18);
+		NewFont("Menu", "ffaccess.ttf", 8);
 	}
 
 	private static void LoadImages()
@@ -278,7 +280,7 @@ public static class GameResources
 	}
 
 	private static void FreeSounds()
-	{
+	{		
 		foreach (SoundEffect obj in _Sounds.Values) {
 			Audio.FreeSoundEffect(obj);
 		}
@@ -286,6 +288,7 @@ public static class GameResources
 
 	private static void FreeMusic()
 	{
+
 		foreach (Music obj in _Music.Values) {
 			Audio.FreeMusic(obj);
 		}
