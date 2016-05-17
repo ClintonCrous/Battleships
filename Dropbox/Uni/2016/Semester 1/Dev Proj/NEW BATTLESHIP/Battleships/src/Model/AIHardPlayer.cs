@@ -1,9 +1,7 @@
-
-using Microsoft.VisualBasic;
+﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using System.Data;
 using System.Diagnostics;
 /// <summary>
 /// AIHardPlayer is a type of player. This AI will know directions of ships
@@ -93,6 +91,7 @@ public class AIHardPlayer : AIPlayer
 	private List<Target> _LastHit = new List<Target>();
 
 	private Target _CurrentTarget;
+	//
 	public AIHardPlayer(BattleShipsGame game) : base(game)
 	{
 	}
@@ -111,15 +110,15 @@ public class AIHardPlayer : AIPlayer
 			//check which state the AI is in and uppon that choose which coordinate generation
 			//method will be used.
 			switch (_CurrentState) {
-				case AIStates.Searching:
-					SearchCoords(ref row, ref column);
-					break;
-				case AIStates.TargetingShip:
-				case AIStates.HittingShip:
-					TargetCoords(ref row, ref column);
-					break;
-				default:
-					throw new ApplicationException("AI has gone in an invalid state");
+			case AIStates.Searching:
+				SearchCoords(ref row, ref column);
+				break;
+			case AIStates.TargetingShip:
+			case AIStates.HittingShip:
+				TargetCoords(ref row, ref column);
+				break;
+			default:
+				throw new ApplicationException("AI has gone in an invalid state");
 			}
 
 		} while ((row < 0 || column < 0 || row >= EnemyGrid.Height || column >= EnemyGrid.Width || EnemyGrid[row, column] != TileView.Sea));
@@ -164,17 +163,17 @@ public class AIHardPlayer : AIPlayer
 	protected override void ProcessShot(int row, int col, AttackResult result)
 	{
 		switch (result.Value) {
-			case ResultOfAttack.Miss:
-				_CurrentTarget = null;
-				break;
-			case ResultOfAttack.Hit:
-				ProcessHit(row, col);
-				break;
-			case ResultOfAttack.Destroyed:
-				ProcessDestroy(row, col, result.Ship);
-				break;
-			case ResultOfAttack.ShotAlready:
-				throw new ApplicationException("Error in AI");
+		case ResultOfAttack.Miss:
+			_CurrentTarget = null;
+			break;
+		case ResultOfAttack.Hit:
+			ProcessHit(row, col);
+			break;
+		case ResultOfAttack.Destroyed:
+			ProcessDestroy(row, col, result.Ship);
+			break;
+		case ResultOfAttack.ShotAlready:
+			throw new ApplicationException("Error in AI");
 		}
 
 		if (_Targets.Count == 0)
@@ -191,7 +190,7 @@ public class AIHardPlayer : AIPlayer
 	private void ProcessDestroy(int row, int col, Ship ship)
 	{
 		bool foundOriginal = false;
-		Location source = null;
+		Location source = default(Location);
 		Target current = null;
 		current = _CurrentTarget;
 
@@ -352,12 +351,4 @@ public class AIHardPlayer : AIPlayer
 			_Targets.Push(new Target(new Location(row, column), _CurrentTarget.ShotAt));
 		}
 	}
-
 }
-
-//=======================================================
-//Service provided by Telerik (www.telerik.com)
-//Conversion powered by NRefactory.
-//Twitter: @telerik
-//Facebook: facebook.com/telerik
-//=======================================================
